@@ -412,6 +412,10 @@ def save_on_master(*args, **kwargs):
 
 
 def init_distributed_mode(args):
+    print('Not using distributed mode')
+    args.distributed = False
+    return
+    
     if int(os.environ.get('DEBUG', '0')) == 0 and 'RANK' in os.environ and 'WORLD_SIZE' in os.environ:
         args.rank = int(os.environ["RANK"])
         args.world_size = int(os.environ['WORLD_SIZE'])

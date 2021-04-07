@@ -17,13 +17,14 @@ def txt2img(visual_path="visual_val_gt"):
 
     gt_json_path = 'mot/annotations/val_half.json'
     img_path = 'mot/train/'
-    show_video_names = ['MOT17-02-FRCNN', 
-                    'MOT17-04-FRCNN',
-                    'MOT17-05-FRCNN',
-                    'MOT17-09-FRCNN',
-                    'MOT17-10-FRCNN',        
-                    'MOT17-11-FRCNN',
-                    'MOT17-13-FRCNN']
+    show_video_names = ['MOT17-02-FRCNN']
+    # show_video_names = ['MOT17-02-FRCNN', 
+    #                 'MOT17-04-FRCNN',
+    #                 'MOT17-05-FRCNN',
+    #                 'MOT17-09-FRCNN',
+    #                 'MOT17-10-FRCNN',        
+    #                 'MOT17-11-FRCNN',
+    #                 'MOT17-13-FRCNN']
     
     for show_video_name in show_video_names:
         img_dict = dict()
@@ -84,7 +85,10 @@ def img2video(visual_path="visual_val_gt"):
     img_paths = gb.glob(visual_path + "/*.png") 
     fps = 16 
     size = (1920,1080) 
-    videowriter = cv2.VideoWriter(visual_path + "_video.avi",cv2.VideoWriter_fourcc('M','J','P','G'), fps, size)
+    # videowriter = cv2.VideoWriter(visual_path + "_video.avi",cv2.VideoWriter_fourcc('M','J','P','G'), fps, size)
+    videowriter = cv2.VideoWriter(visual_path + "_video.mp4",cv2.VideoWriter_fourcc(*'MP4V'), fps, size)
+
+    
 
     for img_path in sorted(img_paths):
         img = cv2.imread(img_path)
