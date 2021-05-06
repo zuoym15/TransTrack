@@ -4,6 +4,7 @@ from .torchvision_datasets import CocoDetection
 
 from .coco import build as build_coco
 from .mot import build as build_mot
+from .cater import build as build_cater
 from .crowdhuman import build as build_crowdhuman
 
 def get_coco_api_from_dataset(dataset):
@@ -21,6 +22,8 @@ def build_dataset(image_set, args):
         return build_coco(image_set, args)
     if args.dataset_file == 'mot':
         return build_mot(image_set, args)
+    if args.dataset_file == 'cater':
+        return build_cater(image_set, args)
     if args.dataset_file == 'crowdhuman':
         return build_crowdhuman(image_set, args)
     if args.dataset_file == 'coco_panoptic':

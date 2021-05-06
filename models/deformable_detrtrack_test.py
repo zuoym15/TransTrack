@@ -166,6 +166,7 @@ class DeformableDETR(nn.Module):
         if not self.two_stage:
             query_embeds = self.query_embed.weight
         hs, init_reference, inter_references, enc_outputs_class, enc_outputs_coord_unact, memory = self.transformer(srcs, masks, pos, query_embeds)
+        # enc_outputs_class and enc_outputs_coord_unact are None
         cur_hs = hs
         outputs_classes = []
         outputs_coords = []

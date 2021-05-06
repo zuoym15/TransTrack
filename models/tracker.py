@@ -44,6 +44,8 @@ class Tracker(object):
                 obj['age'] = 1
                 ret.append(obj)
                 ret_dict[idx] = obj
+
+        # print('id_count', self.id_count)
         
         self.tracks = ret
         self.tracks_dict = ret_dict
@@ -74,6 +76,8 @@ class Tracker(object):
         
         tracks = [v for v in self.tracks_dict.values()] + self.unmatched_tracks
         N = len(results)
+
+        # print('N', N)
         M = len(tracks)
         
         ret = list()

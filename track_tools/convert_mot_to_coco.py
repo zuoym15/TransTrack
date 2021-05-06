@@ -53,11 +53,15 @@ if __name__ == '__main__':
             else:
                 image_range = [0, num_images - 1]
 
+            height, width = 0, 0
+
             for i in range(num_images):
                 if i < image_range[0] or i > image_range[1]:
                     continue
-                img = cv2.imread(os.path.join(data_path, '{}/img1/{:06d}.jpg'.format(seq, i + 1)))
-                height, width = img.shape[:2]
+                if i==0: # check shape
+                    img = cv2.imread(os.path.join(data_path, '{}/img1/{:06d}.jpg'.format(seq, i + 1)))
+                    height, width = img.shape[:2]
+
                 image_info = {'file_name': '{}/img1/{:06d}.jpg'.format(seq, i + 1),  # image name.
                               'id': image_cnt + i + 1,  # image number in the entire training set.
                               'frame_id': i + 1 - image_range[0],  # image number in the video sequence, starting from 1.
@@ -102,7 +106,7 @@ if __name__ == '__main__':
                     if frame_id - 1 < image_range[0] or frame_id - 1 > image_range[1]:
                         continue
                     track_id = int(anns[i][1])
-                    cat_id = int(anns[i][7])
+                    # cat_id = int(anns[i][7])
                     ann_cnt += 1
                     if not ('15' in DATA_PATH):
                         if not (float(anns[i][8]) >= 0.25):  # visibility.

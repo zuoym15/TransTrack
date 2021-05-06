@@ -14,6 +14,9 @@ import random
 import time
 from pathlib import Path
 
+import sys
+sys.path.append('.')
+
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
@@ -231,6 +234,8 @@ def main(args):
     if args.frozen_weights is not None:
         checkpoint = torch.load(args.frozen_weights, map_location='cpu')
         model_without_ddp.detr.load_state_dict(checkpoint['model'])
+
+    print('resume', args.resume)
 
     output_dir = Path(args.output_dir)
     if args.resume:
